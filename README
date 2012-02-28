@@ -1,16 +1,20 @@
 README
 ======
 
-
 ID attribute values
 -------------------
 
-
 This design relies on four unique identifiers for representations:
 
-
 - *makes*
+	Applied to a `div` tag. The list of makes in this representation. This 
+	list may contain only one message
+- *models*
+	Applied to a `div` tag. The list of models in this representation.
 	
+- *years*
+	
+- *cars*
 
 
 
