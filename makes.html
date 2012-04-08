@@ -26,8 +26,21 @@
 		</div>
 		<span>Search for cars</span>
 		<form method="get" action="searchresult.html" class="car-search">
-			<span>make</span>&nbsp;<input type="text" name="make" value=""/><br/>
-			<span>model</span><input type="text" name="model" value=""/><br/>
+			<span>make</span>&nbsp;
+			<input type="text" name="make">
+				<select>
+				<option value="bmw">BMW</option>
+				<option value="ford">Ford</option>
+				<option value="jeep">Jeep</option>
+				<option value="dodge">Dodge</option>
+				</select>
+			</input><br/>
+			<span>model</span>
+			<select><option value="x3">X3</option>
+				<option value="x5">X5</option>
+				<option value="z3">Z3</option>
+				<option value="z4">Z4</option>
+			</select><br/>
 			<span>year</span>&nbsp;<input type="text" name="year" value=""/><br/>
 			
 			<input type="submit" value="Search"/>
