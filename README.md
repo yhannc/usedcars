@@ -140,19 +140,3 @@ Rel attribute values
 	Applied to an `a` tag. A reference to a year representation.
 - *years*
 	Applied to an `a` tag. A reference to a list of years representation.
-
-Sample Data
------------
-
-- Car documents
-	{
-	"type":"car",
-	"make":"make-name",
-	"model":"model-name",
-	"year":"model-year",
-	"name":"car 1",
-	"imageUrl":"http://.../car1.jpg",
-	"description":"information of car 1",
-	}
-
-
