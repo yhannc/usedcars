@@ -1,29 +1,55 @@
 <!DOCTYPE HTML>
 <html>
 	<head> 
-		<title>All Models</title>
+		<title>Used Cars: <%=item.name%></title>
+		<link rel="stylesheet" href="/style.css">
 	</head>
 	<body>
-		<div id="models">
-			<a href="makes.html" rel="makes">All Makes</a>
-			<ul class="all">
-				<li class="model">
-					<span class="model-text">X3</span>
-					<a href="years.html" rel="model">all years</a>
-				</li>
-				<li class="model">
-					<span class="model-text">X5</span>
-					<a href="years.html" rel="model">all years</a>
-				</li>
-				<li class="model">
-					<span class="model-text">Z3</span>
-					<a href="years.html" rel="model">all years</a>
-				</li>
-				<li class="model">
-					<span class="model-text">Z4</span>
-					<a href="years.html" rel="model">all years</a>
-				</li>
-			</ul>
+		<a href="/"><h1>Used Cars</h1></a>
+		<dl>
+			<dt>Make name</dt>
+			<dd><%=item.name%></dd>
+			<% if (item.description) { %>
+			<dt>Description</dt>
+			<dd><%=item.description%></dd>
+			<% } %>
+			<dt>Cars</dt>
+			<dd>
+				<% if (related_items.length > 0) { %>
+				<ul>
+					<% related_items.forEach(function(related_item) { %>
+					<li>
+						<a href="/cars/<%=related_item._id%>">
+							<%=related_item.name%>
+						</a>
+					</li>
+					<% }); %>
+				</ul>
+				<% } else { %>
+				No cars have been added.
+				<% } %>
+			</dd>
+		</dl>
+		<div class="control">
+			<h2>Add a new car</h2>
+			<form id="create-car" method="post" action="/cars/">
+				<input type="hidden" name="item[make]" value="<%=item._id%>">
+				<!-- The line above links the car to be created to this make. -->
+				<label>Car model: 
+					<input name="item[model]" type="text" required 
+						placeholder="Escape">
+				</label>
+				<label>Car model year:
+					<input name="item[modelyear]" type="char" required 
+						placeholder="2006">
+				</label>
+				<label>Car image URL:
+					<input name="item[image]" type="url" size="80"
+						placeholder="http://www.image.com/car.jpeg">
+					<input name="item[image]" type="file">
+				</label>
+				<button>Add</button>
+			</form>
 		</div>
 	</body>
 </html>

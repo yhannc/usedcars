@@ -1,22 +1,44 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head> 
-		<title>Car 1</title>
+	<head>
+		<title>Used Cars: <%=item.name%></title>
+		<link rel="stylesheet" href="/style.css">
 	</head>
 	<body>
-		<div id="cars">
-			<a href="cars.html" rel="cars">All cars for sale</a>
-			<ul class="single">
-				<li class="car">
-					<span class="car-text">Car 1</span>
-					<br/>
-					<img class="car-image" src="http://static.usnews.rankingsandreviews.com/images/Auto/chrome/337847/337847_280x140.jpg" alt="image of Car 1"/>
-					<br/>
-					<span class="description">
-						The information of Car 1
-					</span>
-				</li>
-			</ul>
+		<a href="/"><h1>Used Cars</h1></a>
+		<dl>
+			<dt>Name</dt>
+			<dd><%=item.name%></dd>
+			<dt>Party</dt>
+			<dd><a href="/makes/<%=item.make%>"><%=item.make%></a></dd>
+			<% if (item.image) { %>
+			<dt>Image URL</dt>
+			<dd><img src="<%=item.image%>" alt="<%=item.model%>"></dd>
+			<% } %>
+		</dl>
+		<div class="control">
+			<h2>Update car</h2>
+			<form method="post" action="/cars/<%=item._id%>">
+				<input type="hidden" name="_method" value="put">
+				<!-- The line above tells the server to treat this as a PUT request. -->
+				<label>model: 
+					<input name="item[model]" value="<%=item.model%>" type="text" required>
+				</label>
+				<label>make: 
+					<select name="item[make]" required>
+						<% related_items.forEach(function(related_item) { %>
+						<option value="<%=related_item._id%>"
+							<% if (related_item._id === item.make) { %>selected<% } %>>
+							<%=related_item.model%>
+						</option>
+						<% }); %>
+					</select>
+				</label>
+				<label>Image URL:
+					<input name="item[image]" value="<%=item.image%>" type="url" size="80"> 
+				</label>
+				<button>Update</button>
+			</form>
 		</div>
 	</body>
 </html>

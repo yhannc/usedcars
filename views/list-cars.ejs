@@ -1,29 +1,35 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head> 
-		<title>All Cars for sale</title>
+	<head>
+		<title>Used Cars: Cars</title>
+		<link rel="stylesheet" href="/style.css">
 	</head>
 	<body>
-		<div id="cars">
-			<a href="years.html" rel="years">All years</a>
-			<ul class="all">
-				<li class="car">
-					<span class="car-text">Car 1</span>
-					<a href="car.html" rel="car">info</a>
-				</li>
-				<li class="car">
-					<span class="car-text">Car 2</span>
-					<a href="car.html" rel="car">info</a>
-				</li>
-				<li class="car">
-					<span class="car-text">Car 3</span>
-					<a href="car.html" rel="car">info</a>
-				</li>
-				<li class="car">
-					<span class="car-text">Car 4</span>
-					<a href="car.html" rel="car">info</a>
-				</li>
-			</ul>
+		<a href="/"><h1>Used Cars</h1></a>
+		<% if (items.length > 0) { %>
+		<ul>
+			<% items.forEach(function(item) { %>
+			<li><a href="/cars/<%=item._id%>"><%=item.model%><%item.modelyear%></a></li>
+			<% }); %>
+		</ul>
+		<% } else { %>
+		<div>No cars found.</div>
+		<% } %>
+		<div class="control">
+			<h2>Search for candidates by model or model year</h2>
+			<form method="get" action="/cars/">
+				<label>Car model: 
+					<select name="item[model]" required>
+						<% related_items.forEach(function(related_item) { %>
+						<option value="<%=related_item._id%>"
+							<% if (related_item._id === item.model) { %>selected<% } %>>
+							<%=related_item.model%>
+						</option>
+						<% }); %>
+					</select>
+				</label>
+				<button>Search</button>
+			</form>
 		</div>
 	</body>
 </html>
